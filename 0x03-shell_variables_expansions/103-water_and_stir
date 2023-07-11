@@ -1,14 +1,2 @@
 #!/bin/bash
-
-# Get the numbers from the environment variables
-water_num=$(echo $WATER | baseconv -d 10 water)
-stir_num=$(echo $STIR | baseconv -d 10 stir)
-
-# Add the numbers
-sum=$(($water_num + $stir_num))
-
-# Convert the sum to base bestchol
-bestchol_num=$(echo $sum | baseconv -b bestchol 10)
-
-# Print the result
-echo $bestchol_num
+printf '%o\n' $(( $((5#$(echo $STIR | tr 'stir.' '01234'))) + $((5#$(echo $WATER | tr 'water' '01234'))) )) | tr '01234567' 'bestchol'
